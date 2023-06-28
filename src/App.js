@@ -3,14 +3,18 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MainLayout from './components/MainLayout'
 import Movies from './components/Movies'
 import TVShows from './components/TVShows'
-import MovieDetails from './components/MovieDetails' // new
-import TVShowDetails from './components/TVShowDetails' // new
+import MovieDetails from './components/MovieDetails'
+import TVShowDetails from './components/TVShowDetails'
+import SearchResults from './components/SearchResults' // new
 
 function App() {
   return (
     <Router>
       <MainLayout>
         <Switch>
+          <Route path="/search">
+            <SearchResults />
+          </Route>
           <Route path="/movies/:id">
             <MovieDetails />
           </Route>
