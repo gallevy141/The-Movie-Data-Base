@@ -10,11 +10,14 @@ function SearchResults() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${query}`
+      const responseMovies = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${query}`
+      )
+      const responseShows = await axios.get(
+        `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${query}`
       )
 
-      setResults(response.data.results)
+      setResults([...responseMovies.data.results, ...responseShows.data.results])
     }
 
     fetchData()
