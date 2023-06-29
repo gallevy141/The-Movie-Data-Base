@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import axios from "axios"
-import { Link } from 'react-router-dom'
 
-const TVShows = () => {
-  const [shows, setShows] = useState([])
+const TvShows = () => {
+  const [tvShows, setTvShows] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,7 +11,7 @@ const TVShows = () => {
         `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
       )
 
-      setShows(result.data.results)
+      setTvShows(result.data.results)
     }
 
     fetchData()
@@ -20,11 +20,11 @@ const TVShows = () => {
   return (
     <div>
       <h2>TV Shows</h2>
-      {shows.map((show) => (
+      {tvShows.map((show) => (
         <div key={show.id}>
           <Link to={`/tvshows/${show.id}`}>
+            <h3>{show.name}</h3>
             <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.name} />
-            <p>{show.name}</p>
           </Link>
         </div>
       ))}
@@ -32,4 +32,4 @@ const TVShows = () => {
   )
 }
 
-export default TVShows
+export default TvShows

@@ -9,7 +9,7 @@ function TVShowDetails() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`//replace process.env with actual tmdb api key
+        `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
       )
 
       setShow(response.data)
@@ -20,10 +20,11 @@ function TVShowDetails() {
 
   return (
     <div>
-      <Link to="/tvshows">Back</Link>
       <h1>{show.name}</h1>
       <p>{show.overview}</p>
       <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.name} />
+      <p>Rating: {show.vote_average}</p>
+      <Link to="/tvshows">Back</Link>
     </div>
   )
 }
