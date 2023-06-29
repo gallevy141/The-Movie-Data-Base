@@ -28,7 +28,7 @@ function SearchResults() {
       <h1>Search Results</h1>
       {results.map(result => (
         <div key={result.id}>
-          <Link to={`/${result.media_type}s/${result.id}`}>
+          <Link to={`/${result.media_type}/${result.id}`}>
             <img src={`https://image.tmdb.org/t/p/w500${result.poster_path}`} alt={result.title || result.name} />
             <p>{result.title || result.name}</p>
           </Link>
