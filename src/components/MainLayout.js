@@ -1,35 +1,27 @@
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import React from "react"
+import { Link, useNavigate } from "react-router-dom"
+import Button from "@mui/material/Button"
 
-function MainLayout({ children }) {
-  const [search, setSearch] = useState('')
-  const history = useHistory()
+const MainLayout = ({ children }) => {
+  const navigate = useNavigate()
 
-  const handleSearch = (e) => {
-    e.preventDefault()
-    history.push(`/search?query=${search}`)
+  const onMoviesClick = () => {
+    navigate("/movies")
+  }
+
+  const onTvShowsClick = () => {
+    navigate("/tvshows")
   }
 
   return (
     <div>
-      <nav>
-        <Link to="/movies">Movies</Link>
-        <Link to="/tvshows">TV Shows</Link>
-      </nav>
-      <div>
-        <form onSubmit={handleSearch}>
-          <input
-            type="search"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button type="submit">Search</button>
-        </form>
-      </div>
-      <main>
-        {children}
-      </main>
+      <header>
+        <nav>
+          <Button onClick={onMoviesClick}>Movies</Button>
+          <Button onClick={onTvShowsClick}>TV Shows</Button>
+        </nav>
+      </header>
+      <main>{children}</main>
     </div>
   )
 }

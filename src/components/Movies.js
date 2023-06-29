@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from "react"
+import axios from "axios"
 import { Link } from 'react-router-dom'
 
-function Movies() {
+const Movies = () => {
   const [movies, setMovies] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
+      const result = await axios.get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
       )
 
-      setMovies(response.data.results)
+      setMovies(result.data.results)
     }
 
     fetchData()
@@ -19,8 +19,8 @@ function Movies() {
 
   return (
     <div>
-      <h1>Movies</h1>
-      {movies.map(movie => (
+      <h2>Movies</h2>
+      {movies.map((movie) => (
         <div key={movie.id}>
           <Link to={`/movies/${movie.id}`}>
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />

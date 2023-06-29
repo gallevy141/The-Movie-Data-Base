@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 function TVShowDetails() {
   const [show, setShow] = useState({})
@@ -20,6 +20,7 @@ function TVShowDetails() {
 
   return (
     <div>
+      <Link to="/tvshows">Back</Link>
       <h1>{show.name}</h1>
       <p>{show.overview}</p>
       <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.name} />
