@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 function SearchResults() {
   const [results, setResults] = useState([])
@@ -11,7 +11,7 @@ function SearchResults() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${query}`//replace process.env with actual tmdb api key
+        `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${query}`
       )
 
       setResults(response.data.results)
@@ -24,7 +24,12 @@ function SearchResults() {
     <div>
       <h1>Search Results</h1>
       {results.map(result => (
-        <div key={result.id}>{result.title || result.name}</div>
+        <div key={result.id}>
+          <Link to={`/${result.media_type}s/${result.id}`}>
+            <img src={`https://image.tmdb.org/t/p/w500${result.poster_path}`} alt={result.title || result.name} />
+            <p>{result.title || result.name}</p>
+          </Link>
+        </div>
       ))}
     </div>
   )

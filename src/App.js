@@ -5,7 +5,8 @@ import Movies from './components/Movies'
 import TVShows from './components/TVShows'
 import MovieDetails from './components/MovieDetails'
 import TVShowDetails from './components/TVShowDetails'
-import SearchResults from './components/SearchResults' // new
+import SearchResults from './components/SearchResults'
+import './App.css' // new
 
 function App() {
   return (
