@@ -23,12 +23,17 @@ function SearchResults() {
     fetchData()
   }, [query])
 
+  const mediaTypeToPath = {
+    movie: 'movies',
+    tv: 'tvshows',
+  }
+
   return (
     <div>
       <h1>Search Results</h1>
       {results.map(result => (
         <div key={result.id}>
-          <Link to={`/${result.media_type}/${result.id}`}>
+          <Link to={`/${mediaTypeToPath[result.media_type]}/${result.id}`}>
             <img src={`https://image.tmdb.org/t/p/w500${result.poster_path}`} alt={result.title || result.name} />
             <p>{result.title || result.name}</p>
           </Link>
