@@ -8,6 +8,7 @@ import TVShowDetails from './components/TVShowDetails'
 import SearchResults from './components/SearchResults'
 import './App.css'
 
+//App component sets up the routing for the application
 const App = () => (
   <Router>
     <MainLayout>
